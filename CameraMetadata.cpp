@@ -1,36 +1,38 @@
 #include  "CameraMetadata.h"
 #include <iostream>
 #include <string>
+#include <ostream>
+
 MetaPhoto::MetaPhoto(std::string fileName, std::string imgType, std::string date, double fileSize, std::string authName, int imgWidth, int imgHeight, std::string apSize, std::string expTime, int isoVal, bool flashEn) :
 	_fileName{ fileName }, _imgType{ imgType }, _date{ date }, _fileSize{ fileSize }, _authName{ authName }, _imgShape{ std::to_string(imgWidth) + std::string(" x ") + std::to_string(imgHeight) }, _apSize{ apSize }, _expTime{ expTime }, _isoVal{isoVal}, _flashEn{flashEn} {}
-std::string MetaPhoto::getFileName() {
+std::string MetaPhoto::getFileName() const {
 	return _fileName;
 }
-std::string MetaPhoto::getImgType() {
+std::string MetaPhoto::getImgType() const {
 	return _imgType;
 }
-std::string MetaPhoto::getDate() {
+std::string MetaPhoto::getDate() const {
 	return _date;
 }
-double MetaPhoto::getFileSize() {
+double MetaPhoto::getFileSize() const {
 	return _fileSize;
 }
-std::string MetaPhoto::getAuthName() {
+std::string MetaPhoto::getAuthName() const {
 	return _authName;
 }
-std::string MetaPhoto::getImgShape() {
+std::string MetaPhoto::getImgShape() const {
 	return _imgShape;
 }
-std::string MetaPhoto::getApSize() {
+std::string MetaPhoto::getApSize() const {
 	return _apSize;
 }
-std::string MetaPhoto::getExpTime() {
+std::string MetaPhoto::getExpTime() const {
 	return _expTime;
 }
-int MetaPhoto::getIsoVal() {
+int MetaPhoto::getIsoVal() const {
 	return _isoVal;
 }
-bool MetaPhoto::getFlashEn() {
+bool MetaPhoto::getFlashEn() const {
 	return _flashEn;
 }
 void MetaPhoto::setFileName(std::string fileName) {
@@ -65,8 +67,9 @@ void MetaPhoto::setIsoVal(int isoVal) {
 void MetaPhoto::setFlashEn(bool flashEn) {
 	_flashEn = flashEn;
 }
-void printPhotoMetadata(MetaPhoto metadata) {
-	std::cout << "File Name: " << metadata.getFileName() << ", Type: " << metadata.getImgType() << ", Date taken: " << metadata.getDate() << ", File Size in MB: " << metadata.getFileSize() << 
+std::ostream& operator<<(std::ostream& out, const MetaPhoto& metadata) {
+	out << "File Name: " << metadata.getFileName() << ", Type: " << metadata.getImgType() << ", Date taken: " << metadata.getDate() << ", File Size in MB: " << metadata.getFileSize() << 
 		", Img Size: " << metadata.getImgShape() << ", Aperture size: " << metadata.getApSize() << ", Exposure Time : " << metadata.getExpTime() << ", ISO value: " <<
-		metadata.getIsoVal() << ", Is Flash Enabled? " << metadata.getFlashEn() << "\n";
+	metadata.getIsoVal() << ", Is Flash Enabled? " << metadata.getFlashEn() << "\n";
+	return out;
 }

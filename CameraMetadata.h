@@ -1,21 +1,21 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ostream>
 
 class MetaPhoto {
 public:
-	MetaPhoto(std::string fileName, std::string imgType, std::string date, double fileSize, std::string authName, int imgWidth, int imgHeight, std::string apSize, std::string expTime, int isoVal, bool flashEn);
-	void printPhotoMetadata(MetaPhoto Metadata);
-	std::string getFileName();
-	std::string getImgType();
-	std::string getDate();
-	double getFileSize();
-	std::string getAuthName();
-	std::string getImgShape();
-	std::string getApSize();
-	std::string getExpTime();
-	int getIsoVal();
-	bool getFlashEn();
+	const MetaPhoto(std::string fileName, std::string imgType, std::string date, double fileSize, std::string authName, int imgWidth, int imgHeight, std::string apSize, std::string expTime, int isoVal, bool flashEn);
+	std::string getFileName() const;
+	std::string getImgType() const;
+	std::string getDate() const;
+	double getFileSize() const;
+	std::string getAuthName() const;
+	std::string getImgShape() const;
+	std::string getApSize() const;
+	std::string getExpTime() const;
+	int getIsoVal() const;
+	bool getFlashEn() const;
 	void setFileName(std::string fileName);
 	void setImgType(std::string imgType);
 	void setDate(std::string date);
@@ -38,3 +38,5 @@ private:
 	int _isoVal;
 	bool _flashEn;
 };
+
+std::ostream& operator<<(std::ostream& out, const MetaPhoto& metadata);

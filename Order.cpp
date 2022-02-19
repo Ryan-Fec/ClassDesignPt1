@@ -3,8 +3,8 @@
 #include "StoreItem.h"
 #include "Order.h"
 
-order::order(std::vector<item> orderList) :
-	orderList{ orderList } {}
+order::order(std::vector<item> orderList, std::vector<int> numWant) :
+	orderList{ orderList }, numWant { numWant } {}
 void order::addToOrder(order ord, item newItem) {
 	ord.orderList.push_back(newItem);
 }
